@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2009 Mercedes-Benz SLR Mclaren 722S Roadster</title>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #111;
+            overflow: hidden;
+            position: relative;
+        }
+        model-viewer {
+            width: 80vw;
+            height: 80vh;
+            position: absolute;
+            z-index: 2;
+        }
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://sika.scene7.com/is/image/sika/fr-interieur-garage:16-9?wid=1920&hei=1080&fit=crop%2C1');
+            background-size: cover;
+            background-position: center;
+            z-index: 1;
+        }
+        .ground {
+            position: absolute;
+            bottom: 10%;
+            width: 50vw;
+            height: 10vh;
+            background: radial-gradient(circle, rgba(50,50,50,0.8) 0%, rgba(0,0,0,0) 80%);
+            z-index: 1;
+            border-radius: 50%;
+        }
+        .controls {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 3;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 10px;
+        }
+        select, button {
+            padding: 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            color: rgb(0, 0, 0);
+            font-size: 16px;
+        }
+        .color-picker {
+            background: white;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <div class="background"></div>
+    <model-viewer src="scene.gltf" 
+        id="carModel" 
+        alt="Honda Civic Type R 3D"
+        camera-controls 
+        background-color="#111"
+        shadow-intensity="1"
+        lighting="hdr"
+        exposure="1">
+    </model-viewer>
+    <div class="ground"></div>
+    <div class="controls">
+        <select id="materialSelector">
+            <option value="">Sélectionner une partie</option>
+        </select>
+        <input type="color" id="colorPicker" class="color-picker">
+        <button onclick="changeColor()">Appliquer</button>
+    </div>
+
+    <script>
+        const modelViewer = document.querySelector("#carModel");
+        const materialSelector = document.getElementById("materialSelector");
+        const colorPicker = document.getElementById("colorPicker");
+    
+        // Liste de correspondance entre noms techniques et noms lisibles
+        const materialNames = {
+            "hM_CarPaint_Max1": "Carrosserie",
+            "hM_Chassis_Max1": "Châssis",
+            "hM_Interior_Max1": "Intérieur",
+            "hM_Engine_Max1": "Moteur",
+            "hM_Badge_Max1": "Badge",
+            "hM_GrilleA_Max1": "Grille Avant",
+            "hM_Glass_WindowFront_Low1": "Fenêtre Avant",
+            "hM_Glass_WindowSurroundFront_Low1": "Contour Fenêtre Avant",
+            "hM_LightBucket_Max1": "Phares",
+            "hM_Opaque_PlasticRoughBlack_Max1": "Léger Contour Fenêtre",
+            "hM_Opaque_PlasticSmoothBlack_Max1": "Contour Fenêtre",
+            "hM_Opaque_ChromeSmooth_Max1": "Rétroviseur central",
+            "hM_Opaque_NickelRough_Max1": "Pot d'échappement interieur",
+            "hM_Opaque_NickelSmooth_Max1": "Pot d'échappement exterieur",
+            "hM_LightGlass_Orange_Low1": "Verre Clignotant",
+            "hM_LightGlassNormal_Clear_Low1": "Verre Transparent",
+            "hM_LightGlassNormal_Orange_Low1": "Verre Orange",
+            "hM_LightGlassNormal_Red_Low1": "Verre Rouge",
+            "hM_Rim_Main_Max1": "Jantes",
+            "hM_Rim_NoTint_Max1": "Jantes Sans Teinte",
+            "hM_RimBadge_Max1": "Badge de Jante",
+            "hM_GlassOpaque_Mirror_Max1": "Rétroviseur Exterieur",
+            "Honda_Civic15VTECCrewRecycled_1994_Wheel1A_3D_3DWheel2A_Material1": "Pneu",
+            "Honda_Civic15VTECCrewRecycled_1994CaliperGloss_Material": "Étrier Brillant",
+        };
+    
+        modelViewer.addEventListener("load", () => {
+            const materials = modelViewer.model.materials;
+            materialSelector.innerHTML = '<option value="">Sélectionner une partie</option>';
+    
+            materials.forEach((mat, index) => {
+                const materialName = materialNames[mat.name] || `Matériau ${index + 1}`;
+                const option = document.createElement("option");
+                option.value = index;
+                option.textContent = materialName;
+                materialSelector.appendChild(option);
+            });
+        });
+    
+        function changeColor() {
+            const selectedIndex = materialSelector.value;
+            if (selectedIndex === "") return;
+    
+            const selectedMaterial = modelViewer.model.materials[selectedIndex];
+            if (selectedMaterial) {
+                const hexColor = colorPicker.value;
+                const rgb = hexToRGBA(hexColor);
+                selectedMaterial.pbrMetallicRoughness.setBaseColorFactor(rgb);
+            }
+        }
+    
+        function hexToRGBA(hex) {
+            let r = parseInt(hex.substr(1, 2), 16) / 255;
+            let g = parseInt(hex.substr(3, 2), 16) / 255;
+            let b = parseInt(hex.substr(5, 2), 16) / 255;
+            return [r, g, b, 1];
+        }
+    </script>
+</body>
+</html>
