@@ -1,0 +1,209 @@
+/* ✅ Animation du fond (gradient en mouvement) */
+@keyframes backgroundAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+body {
+    background: linear-gradient(270deg, #130020, #2d004d, #4a0080);
+    background-size: 400% 400%;
+    animation: backgroundAnimation 10s infinite linear;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* ✅ Effet scintillant sur le fond (ajout de particules lumineuses) */
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("https://www.transparenttextures.com/patterns/stardust.png");
+    opacity: 0.3;
+    pointer-events: none;
+    animation: shimmer 5s infinite linear alternate;
+}
+
+@keyframes shimmer {
+    0% { opacity: 0.2; }
+    100% { opacity: 0.5; }
+}
+
+/* ✅ Effet lumineux sur le titre */
+h1 {
+    font-size: 5rem;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    color: #9c62d3;
+    text-shadow: 0px 0px 10px rgba(156, 98, 211, 0.8);
+    animation: pulse 2s infinite alternate;
+}
+
+@keyframes pulse {
+    0% { text-shadow: 0px 0px 10px rgba(156, 98, 211, 0.8); }
+    100% { text-shadow: 0px 0px 20px rgba(156, 98, 211, 1); }
+}
+
+/* ✅ Effet interactif sur la barre de recherche */
+#search-bar {
+    width: 50%;
+    padding: 12px;
+    margin: 20px auto;
+    display: block;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    border: 2px solid #8a2be2;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    transition: 0.3s ease;
+}
+
+#search-bar:focus {
+    box-shadow: 0px 0px 15px rgba(138, 43, 226, 0.8);
+}
+
+#warning {
+    font-size: 1.5rem;
+    color: crimson;
+    animation: fadeIn 1.5s ease-in-out;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(138, 43, 226, 0.8);
+}
+
+/* ✅ Effet visuel sur les cartes de jeux */
+.container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.card {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease;
+    opacity: 0;
+    animation: fadeIn 0.6s forwards ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.card:hover {
+    transform: scale(1.1);
+    box-shadow: 0 10px 30px rgba(138, 43, 226, 0.8);
+}
+
+/* ✅ Ajout d'une ombre et d'un effet de zoom sur les images */
+.card img {
+    width: 100%;
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card img:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.3);
+}
+
+/* ✅ Effet visuel sur les boutons */
+.download-btn {
+    display: inline-block;
+    padding: 12px 18px;
+    margin-top: 10px;
+    background: linear-gradient(135deg, #8a2be2, #d441ff);
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: transform 0.2s ease-in-out, background 0.3s ease;
+}
+
+.download-btn:hover {
+    background: linear-gradient(135deg, #d441ff, #8a2be2);
+    transform: scale(1.1);
+    box-shadow: 0px 0px 15px rgba(138, 43, 226, 0.8);
+}
+
+.download-btn:active {
+    transform: scale(0.95);
+}
+
+/* ✅ Effet sur les boutons de pagination */
+.pagination button {
+    padding: 12px 20px;
+    margin: 5px;
+    border: none;
+    background: linear-gradient(135deg, #8a2be2, #d441ff);
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: transform 0.2s ease-in-out, background 0.3s ease;
+}
+
+.pagination button:hover {
+    background: linear-gradient(135deg, #d441ff, #8a2be2);
+    transform: scale(1.05);
+}
+
+.pagination button:active {
+    transform: scale(0.95);
+}
+
+/* ✅ Pied de page stylisé */
+.footer {
+    margin-top: 40px;
+    font-size: 1rem;
+    opacity: 0.8;
+    text-shadow: 0px 0px 5px rgba(255, 255, 255, 0.5);
+}
+
+/* ✅ Effet responsive pour mobile et tablette */
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    #search-bar {
+        width: 80%;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    .card {
+        padding: 15px;
+    }
+
+    .download-btn {
+        font-size: 0.9rem;
+        padding: 10px 15px;
+    }
+}

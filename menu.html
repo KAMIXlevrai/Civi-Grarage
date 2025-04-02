@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./img/logo.png">
+    <meta name="description" content="- Découvrez et téléchargez vos logiciels préférés! -"/>
+    <meta name="author" content="NascaR"/>
+    <meta name="keywords" content="Amnesia"/>
+    <title>Amnesia Store</title>
+    <link rel="stylesheet" href="./css/titre.css">
+    <link rel="stylesheet" href="./css/download.css">
+    <link rel="stylesheet" href="./css/market/styles.css">
+</head>
+<body>
+    <h1>AMNESIA</h1>
+    <input type="text" id="search-bar" placeholder="Rechercher..." onkeyup="filterGames()" />
+    <div class="container" id="game-list"></div>
+    <div class="pagination">
+        <button onclick="previousPage()">Précédent</button>
+        <button onclick="nextPage()">Suivant</button>
+    </div>
+    <p class="footer" id="warning">⚠️ Attention votre navigateur ne supporte peut être pas les modèle 3D ⚠️</p>
+    <p class="footer">© 2025 Amnesia - Made By NascaR</p>
+
+    <script src="./js/script.js"></script>
+</body>
+</html>
