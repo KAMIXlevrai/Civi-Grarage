@@ -1,4 +1,4 @@
- # 🚗💨 Lowrider Vibes: [Public Page] 🔥  
+ # 🚗💨 Street Racing Vibes: [Public Page] 🔥  
 
 ![Site Banner](https://ennokapitza.de/en/assets/image-cache/image-cache/content/reportage/tokyoracers/enno-kapitza-photography-reportage-tokyo-nightracers02.cfcd958f.4b6a4e43.jpg)  
 
@@ -15,7 +15,7 @@ Bienvenue dans **[Public Page]**, un projet inspiré de la culture street ! Ici,
 ---
 
 ## 📸 Preview
-![Lowrider Animation](https://i.pinimg.com/originals/7c/d4/15/7cd415c2a1d5649e16a8eef19cf13664.gif)  
+![Street Animation](https://i.pinimg.com/originals/7c/d4/15/7cd415c2a1d5649e16a8eef19cf13664.gif)  
 
 ---
 
